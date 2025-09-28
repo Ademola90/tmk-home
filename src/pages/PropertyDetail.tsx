@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { FiArrowLeft, FiHeart, FiShare2, FiDollarSign } from "react-icons/fi";
 import PropertyImageGallery from "../components/property/PropertyImageGallery";
 import PropertyDetails from "../components/property/PropertyDetails";
-import AgentCard from "../components/property/AgentCard";
+// import AgentCard from "../components/property/AgentCard";
 import RelatedProperties from "../components/property/RelatedProperties";
 import Button from "../components/common/Button";
 import Navbar from "../components/nav/Navbar";
@@ -125,7 +125,7 @@ const PropertyDetail = () => {
       <Navbar />
 
       {/* Header */}
-      <div className="bg-card border-b border-border sticky top-0 z-40">
+      <div className="bg-card  sticky top-0 z-40 px-5 md:px-10 lg:px-16">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <button
@@ -154,7 +154,7 @@ const PropertyDetail = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 px-5 md:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
@@ -243,7 +243,7 @@ const PropertyDetail = () => {
             </motion.div>
 
             {/* Agent Card */}
-            <AgentCard agent={property.agent} />
+            {/* <AgentCard agent={property.agent} /> */}
           </div>
         </div>
 

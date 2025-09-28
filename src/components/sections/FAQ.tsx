@@ -45,7 +45,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-[#141414]">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -54,10 +54,10 @@ const FAQ = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#fff] mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-200 max-w-2xl mx-auto">
             Find answers to common questions about our platform
           </p>
         </motion.div>
@@ -74,16 +74,16 @@ const FAQ = () => {
             >
               <button
                 onClick={() => toggleFAQ(faq.id)}
-                className="w-full bg-white rounded-xl p-6 text-left hover:shadow-md transition-shadow duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full bg-[#000] rounded-xl p-6 text-left hover:shadow-md transition-shadow duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                  <h3 className="text-lg font-semibold text-[#fff] pr-4">
                     {faq.question}
                   </h3>
                   {openFAQ === faq.id ? (
-                    <FiMinus className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <FiMinus className="w-5 h-5 text-[#155DFC] flex-shrink-0" />
                   ) : (
-                    <FiPlus className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <FiPlus className="w-5 h-5 text-[#155DFC] flex-shrink-0" />
                   )}
                 </div>
 
@@ -95,7 +95,7 @@ const FAQ = () => {
                     transition={{ duration: 0.3 }}
                     className="mt-4 pt-4 border-t border-gray-200"
                   >
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-200 leading-relaxed">
                       {faq.answer}
                     </p>
                   </motion.div>

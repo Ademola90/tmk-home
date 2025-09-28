@@ -134,17 +134,17 @@ const Footer = () => {
             <h3 className="text-xl font-semibold mb-6">Contact Us</h3>
             <div className="space-y-4">
               <div className="flex items-center">
-                <FiMapPin className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" />
+                <FiMapPin className="w-5 h-5 text-[#155DFC] mr-3 flex-shrink-0" />
                 <span className="text-gray-300">
-                  123 Real Estate St, City, State 12345
+                  123 Real Estate St, Osun State
                 </span>
               </div>
               <div className="flex items-center">
-                <FiPhone className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" />
-                <span className="text-gray-300">+1 (555) 123-4567</span>
+                <FiPhone className="w-5 h-5 text-[#155DFC] mr-3 flex-shrink-0" />
+                <span className="text-gray-300">+234 8134 392 733</span>
               </div>
               <div className="flex items-center">
-                <FiMail className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" />
+                <FiMail className="w-5 h-5 text-[#155DFC] mr-3 flex-shrink-0" />
                 <span className="text-gray-300">info@tmk.com</span>
               </div>
             </div>
