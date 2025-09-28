@@ -1,0 +1,217 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+
+// Auth Pages
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
+import VerifyOTP from "./pages/auth/VerifyOTP";
+
+// Main Pages
+import Home from "./pages/home";
+import Properties from "./pages/Properties";
+import PropertyDetail from "./pages/PropertyDetail";
+import Chat from "./pages/Chat";
+import Wallet from "./pages/Wallet";
+
+// Components
+import Toast from "./components/common/Toast";
+import WhatsAppButton from "./components/common/WhatsAppButton";
+
+// Stores
+import { useThemeStore } from "./store/useThemeStore";
+import { useToastStore } from "./store/useToastStore";
+import { useAuthStore } from "./store/useAuthStore";
+
+// Protected Route Component
+import ProtectedRoute from "./components/common/ProtectedRoute";
+
+function App() {
+  const { isDarkMode } = useThemeStore();
+  const { toasts } = useToastStore();
+  const { isAuthenticated } = useAuthStore();
+
+  // Apply theme to document
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+
+  return (
+    <div
+      className={`min-h-screen ${isDarkMode ? "dark bg-gray-900" : "bg-white"}`}
+    >
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/properties" element={<Properties />} />
+          <Route path="/property/:id" element={<PropertyDetail />} />
+
+          {/* Auth Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/verify-otp" element={<VerifyOTP />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/chat"
+            element={
+              <ProtectedRoute>
+                <Chat />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/wallet"
+            element={
+              <ProtectedRoute>
+                <Wallet />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Catch all route - 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
+        {/* Global Components */}
+        <WhatsAppButton phoneNumber="+447733714715" />
+
+        {/* Toast Notifications */}
+        <div className="fixed top-4 right-4 z-50 space-y-2">
+          {toasts.map((toast) => (
+            <Toast key={toast.id} {...toast} />
+          ))}
+        </div>
+      </Router>
+    </div>
+  );
+}
+
+// 404 Not Found Component
+const NotFound = () => {
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
+        <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+          Page Not Found
+        </h2>
+        <p className="text-gray-600 mb-8">
+          The page you're looking for doesn't exist.
+        </p>
+        <a
+          href="/"
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Go Home
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// import Login from "./pages/auth/Login";
+// import Signup from "./pages/auth/Signup";
+// import VerifyOTP from "./pages/auth/VerifyOTP";
+// // import WhatsAppButton from "./components/common/WhatsAppButton";
+// import Toast from "./components/common/Toast";
+// import Home from "./pages/home";
+// import { useThemeStore } from "./store/useThemeStore";
+// import { useToastStore } from "./store/useToastStore";
+// import Properties from "./pages/Properties";
+
+// // Dashboard Screens
+
+// function App() {
+//   const { isDarkMode } = useThemeStore();
+//   const { toasts } = useToastStore();
+
+//   return (
+//     <div
+//       className={`min-h-screen ${isDarkMode ? "dark bg-gray-900" : "bg-white"}`}
+//     >
+//       <Router>
+//         <Routes>
+//           {/* Dashboard Routes */}
+//           {/* <Route path="/dashboard" element={<DashboardLayout />}>
+//             <Route index element={<DashboardHome />} />
+//             <Route path="cars" element={<ManageCars />} />
+//             <Route path="cars/add" element={<AddCar />} />
+//             <Route path="cars/edit/:id" element={<EditCar />} />
+//             <Route path="cars/preview/:id" element={<PreviewCar />} />
+//             <Route path="accessories" element={<ManageAccessories />} />
+//             <Route path="accessories/add" element={<AddAccessory />} />
+//             <Route path="accessories/edit/:id" element={<EditAccessory />} />
+//             <Route
+//               path="accessories/preview/:id"
+//               element={<PreviewAccessory />}
+//             />
+//             <Route path="users" element={<ManageUsers />} />
+//             <Route path="orders" element={<ManageOrders />} />
+//             <Route path="car-hire" element={<ManageCarHire />} />
+//             <Route path="reviews" element={<ManageReviews />} />
+//             <Route path="analytics" element={<Analytics />} />
+//             <Route path="reports" element={<Reports />} />
+//             <Route path="settings" element={<Settings />} /> */}
+
+//           {/* </Route> */}
+
+//           {/* Public Routes */}
+//           <Route
+//             path="/*"
+//             element={
+//               <>
+//                 {/* <Navbar /> */}
+//                 <main className="min-h-screen">
+//                   <Routes>
+//                     <Route path="/" element={<Home />} />
+//                     {/* <Route path="/about" element={<About />} />
+//                     <Route path="/services" element={<Services />} />
+//                     <Route path="/cars" element={<Cars />} />
+//                     <Route
+//                       path="/services/services/cars/:id"
+//                       element={<CarDetail />}
+//                     />
+//                     <Route
+//                       path="/services/accessories"
+//                       element={<Accessories />}
+//                     />
+//                     <Route
+//                       path="/services/accessories/:id"
+//                       element={<AccessoryDetail />}
+//                     /> */}
+//                     {/* <Route path="/car-hire" element={<CarHire />} />
+//                     <Route path="/contact" element={<Contact />} /> */}
+//                     <Route path="/login" element={<Login />} />
+//                     <Route path="/signup" element={<Signup />} />
+//                     <Route path="/verify-otp" element={<VerifyOTP />} />
+//                     <Route path="/properties" element={<Properties />} />
+//                   </Routes>
+//                 </main>
+//                 {/* <Footer /> */}
+//                 {/* <WhatsAppButton /> */}
+//               </>
+//             }
+//           />
+//         </Routes>
+
+//         {/* Toast Notifications */}
+//         <div className="fixed top-4 right-4 z-50 space-y-2">
+//           {toasts.map((toast) => (
+//             <Toast key={toast.id} {...toast} />
+//           ))}
+//         </div>
+//       </Router>
+//     </div>
+//   );
+// }
+
+// export default App;
