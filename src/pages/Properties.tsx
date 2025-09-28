@@ -99,21 +99,28 @@ const Properties = () => {
       </section>
 
       {/* Filters and Results */}
-      <section className="py-8 bg-[#141414]">
+      <section className="py-8 bg-[#141414] px-5 md:px-10 lg:px-16">
         <div className="container mx-auto px-4">
           {/* Filter Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-4">
-              <p className=" font-semibold text-4xl text-white">
-                Discover a World of Possibilities
-              </p>
-              <PropertyFilters
-                filters={filters}
-                onFiltersChange={setFilters}
-                onClearFilters={handleClearFilters}
-              />
-              <div className="text-sm text-muted-foreground text-white">
-                {filteredProperties.length} properties found
+            <div className="flex items-center gap-24">
+              <div className=" ">
+                <p className=" font-semibold text-4xl text-white">
+                  Discover a World of Possibilities
+                </p>
+                <p className=" text-base font-normal text-white">
+                  Our portfolio of properties is as diverse as your dreams.
+                </p>
+              </div>
+              <div className=" flex items-center gap-10">
+                <PropertyFilters
+                  filters={filters}
+                  onFiltersChange={setFilters}
+                  onClearFilters={handleClearFilters}
+                />
+                <div className="text-sm text-muted-foreground text-white">
+                  {filteredProperties.length} properties found
+                </div>
               </div>
             </div>
 

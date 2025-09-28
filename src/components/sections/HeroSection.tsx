@@ -45,7 +45,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-xl md:text-2xl text-gray-100 mb-12 leading-relaxed"
+            className="text-xl md:text-2xl text-gray-100 mb-12 leading-relaxed font-normal"
           >
             Discover premium properties with our advanced search and secure
             transaction platform
