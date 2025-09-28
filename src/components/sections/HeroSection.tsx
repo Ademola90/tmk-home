@@ -30,7 +30,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
       </div>
 
-      <div className="container mt-10 mx-auto px-4 relative z-10">
+      <div className="container mt-20 mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -38,7 +38,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
             className="text-5xl md:text-7xl font-bold  mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-gray-200 to-[#155DFC]"
           >
-            Find Your Perfect Home
+            Making Home Ownership Simple
           </motion.h1>
 
           <motion.p
@@ -47,8 +47,8 @@ const HeroSection = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-xl md:text-2xl text-gray-100 mb-12 leading-relaxed font-normal"
           >
-            Discover premium properties with our advanced search and secure
-            transaction platform
+            Providing access to real estate opportunities for over a million
+            people worldwide.
           </motion.p>
 
           {/* Search Form */}

@@ -26,7 +26,7 @@ const FeaturedProperties = () => {
   };
 
   return (
-    <section className="py-20 bg-[#141414]  px-5 md:px-10 lg:px-16">
+    <section className="py-20 bg-gray-900  px-5 md:px-10 lg:px-16">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
