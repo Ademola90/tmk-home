@@ -133,7 +133,7 @@ const Properties = () => {
                     : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                 }`}
               >
-                <FiGrid className="w-4 h-4" />
+                <FiGrid className="w-4 h-4 text-white" />
               </button>
               <button
                 onClick={() => setViewMode("list")}
@@ -143,7 +143,7 @@ const Properties = () => {
                     : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                 }`}
               >
-                <FiList className="w-4 h-4" />
+                <FiList className="w-4 h-4 text-white" />
               </button>
             </div>
           </div>
