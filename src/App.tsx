@@ -24,6 +24,7 @@ import { useAuthStore } from "./store/useAuthStore";
 
 // Protected Route Component
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import AboutUs from "./pages/About-Us";
 
 function App() {
   const { isDarkMode } = useThemeStore();
@@ -47,6 +48,7 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/property/:id" element={<PropertyDetail />} />
 

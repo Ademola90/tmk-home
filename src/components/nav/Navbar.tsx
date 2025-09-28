@@ -74,7 +74,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", path: "/", icon: FiHome, requiresAuth: false },
-    { name: "About Us", path: "/about", icon: FiUser, requiresAuth: false },
+    { name: "About Us", path: "/about-us", icon: FiUser, requiresAuth: false },
     {
       name: "Properties",
       path: "/properties",
