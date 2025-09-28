@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiFilter, FiX } from "react-icons/fi";
-// import type { PropertyFilter } from "../../types/property";
+import type { PropertyFilter } from "../../types/property";
 import Button from "../common/Button";
 import LocationSelector from "../location/LocationSelector";
-import type { PropertyFilter } from "../../types/property";
 
 interface PropertyFiltersProps {
   filters: PropertyFilter;
@@ -63,7 +62,7 @@ const PropertyFilters = ({
       <Button
         variant="outline"
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center space-x-2 ${
+        className={`flex items-center space-x-2 font-normal text-white ${
           hasActiveFilters ? "border-primary text-primary" : ""
         }`}
       >
