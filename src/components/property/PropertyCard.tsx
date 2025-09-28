@@ -74,22 +74,22 @@ const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
 
       <div className="p-4">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="text-lg truncate font-semibold text-foreground group-hover:text-primary transition-colors">
+          <h3 className="text-lg truncate font-normal text-foreground group-hover:text-primary transition-colors">
             {property.title}
           </h3>
         </div>
         <div>
-          <p className="text-xl font-bold text-primary mb-2">
+          <p className="text-xl font-semibold text-primary mb-2">
             {formatPrice(property.price)}
           </p>
         </div>
 
-        <div className="flex items-center text-muted-foreground mb-3">
+        <div className="flex items-center font-normal text-muted-foreground mb-3">
           <FiMapPin className="w-4 h-4 mr-1" />
           <span className="text-sm">{property.location}</span>
         </div>
 
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+        <p className="text-sm text-muted-foreground font-normal mb-4 line-clamp-2">
           {property.description}
         </p>
 
