@@ -51,18 +51,30 @@ const Properties = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-primary/5 py-16">
-        <div className="container mx-auto px-4">
+      <section className="relative bg-primary/5 py-16 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          //   style={{
+          //     backgroundImage: "url(pten)",
+          //   }}
+        />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-purple-900/50" />
+
+        {/* Content */}
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
               Find Your Dream Property
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-gray-100 max-w-2xl mx-auto drop-shadow-md">
               Discover the perfect home from our curated collection of premium
               properties
             </p>
@@ -83,7 +95,7 @@ const Properties = () => {
                 placeholder="Search by location, property type, or keywords..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 text-lg border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-card"
+                className="w-full pl-12 pr-4 py-4 text-lg border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-white/95 backdrop-blur-sm"
               />
               <Button
                 type="submit"
@@ -95,9 +107,8 @@ const Properties = () => {
           </motion.form>
         </div>
       </section>
-
       {/* Filters and Results */}
-      <section className="py-8 bg-[#141414] px-5 md:px-10 lg:px-16">
+      <section className="py-8 bg-gray-900 px-5 md:px-10 lg:px-16">
         <div className="container mx-auto px-4">
           {/* Filter Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 space-y-4 md:space-y-0">
