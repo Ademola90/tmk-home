@@ -71,7 +71,7 @@ const FeaturedProperties = () => {
             onClick={() => navigate("/properties")}
             variant="outline"
             size="lg"
-            className="bg-transparent"
+            className="bg-[#fff] text-black hover:text-white hover:bg-transparent hover:border-white hover:border  "
           >
             View All Properties
           </Button>
