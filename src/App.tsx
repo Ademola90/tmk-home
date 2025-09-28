@@ -20,7 +20,7 @@ import WhatsAppButton from "./components/common/WhatsAppButton";
 // Stores
 import { useThemeStore } from "./store/useThemeStore";
 import { useToastStore } from "./store/useToastStore";
-import { useAuthStore } from "./store/useAuthStore";
+// import { useAuthStore } from "./store/useAuthStore";
 
 // Protected Route Component
 import ProtectedRoute from "./components/common/ProtectedRoute";
@@ -29,7 +29,7 @@ import AboutUs from "./pages/About-Us";
 function App() {
   const { isDarkMode } = useThemeStore();
   const { toasts } = useToastStore();
-  const { isAuthenticated } = useAuthStore();
+  // const { isAuthenticated } = useAuthStore();
 
   // Apply theme to document
   useEffect(() => {
