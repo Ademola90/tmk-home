@@ -12,6 +12,9 @@ import Navbar from "../components/nav/Navbar";
 import Footer from "../components/sections/Footer";
 
 const Properties = () => {
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const navigate = useNavigate();
   const {
     filteredProperties,

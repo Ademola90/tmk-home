@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FiStar, FiAward, FiUsers, FiHeart } from "react-icons/fi";
+import ourvalue from "../../../assets/ourvalue.png";
 
 const values = [
   {
@@ -46,6 +47,7 @@ const OurValues = () => {
               a small team with big dreams, determined to create a real estate
               platform that transcended the ordinary.
             </p>
+            <img className=" mt-10" src={ourvalue} alt="" />
           </motion.div>
 
           {/* Right Values Grid */}

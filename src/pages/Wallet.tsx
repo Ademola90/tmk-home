@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiPlus, FiMinus, FiShield, FiCreditCard } from "react-icons/fi";
 import WalletOverview from "../components/wallet/WalletOverview";
@@ -20,6 +18,9 @@ interface Tab {
 }
 
 const Wallet = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [activeTab, setActiveTab] = useState<TabId>("overview");
   const [showAddFunds, setShowAddFunds] = useState(false);
 

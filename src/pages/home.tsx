@@ -5,8 +5,12 @@ import Testimonials from "../components/sections/Testimonials";
 import FAQ from "../components/sections/FAQ";
 import Footer from "../components/sections/Footer";
 import FeaturedProperties from "../components/sections/FeaturesSection";
+import { useEffect } from "react";
 
 const Home = () => {
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen">
       <Navbar />

@@ -15,6 +15,9 @@ import { useWalletStore } from "../store/useWalletStore";
 import { useToastStore } from "../store/useToastStore";
 
 const PropertyDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { properties, selectedProperty, setSelectedProperty } =

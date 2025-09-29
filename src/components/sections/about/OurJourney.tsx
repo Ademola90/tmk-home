@@ -21,6 +21,20 @@ const OurJourney = () => {
     <section className="py-20 bg-gray-900 text-white  px-5 md:px-10 lg:px-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Right Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex justify-center lg:hidden md:hidden "
+          >
+            <img
+              src={abouthero}
+              alt="Hand holding house model"
+              className="max-w-full h-auto"
+            />
+          </motion.div>
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -63,7 +77,7 @@ const OurJourney = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex justify-center"
+            className=" justify-center  lg:block md:hidden hidden"
           >
             <img
               src={abouthero}

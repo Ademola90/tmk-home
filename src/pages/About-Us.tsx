@@ -7,8 +7,13 @@ import OurValues from "../components/sections/about/OurValues";
 import TeamSection from "../components/sections/about/TeamSection";
 import ValuedClients from "../components/sections/about/ValuedClients";
 import Footer from "../components/sections/Footer";
+import lndscape from "../assets/lndscape.png";
+import { useEffect } from "react";
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -17,6 +22,9 @@ const About = () => {
       <OurAchievements />
       <NavigatingExperience />
       <TeamSection />
+      <section>
+        <img className=" w-full h-96" src={lndscape} alt="" />
+      </section>
       <ValuedClients />
       <CallToAction />
       <Footer />

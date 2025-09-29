@@ -55,7 +55,7 @@ const mockProperties: Property[] = [
     price: 650000,
     location: "Suburban Heights",
     state: "Osun",
-    lga: "Irewole", // Added missing field
+    lga: "Irewole",
     bedrooms: 4,
     bathrooms: 3,
     area: 2500,

@@ -8,6 +8,9 @@ import Navbar from "../components/nav/Navbar";
 import Footer from "../components/sections/Footer";
 
 const Chat: React.FC = () => {
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [message, setMessage] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
