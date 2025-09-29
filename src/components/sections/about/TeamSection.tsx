@@ -1,33 +1,37 @@
 import { motion } from "framer-motion";
 import { FiTwitter } from "react-icons/fi";
+import teamone from "../../../assets/teamone.jpg";
+import teamtwo from "../../../assets/teamtwo.png";
+import teamthree from "../../../assets/teamthree.png";
+import teamfour from "../../../assets/teamfour.png";
 
 const teamMembers = [
   {
     id: 1,
-    name: "Max Mitchell",
+    name: "Ademola Abdullahi",
     role: "Founder",
-    image: "/team-member-1.jpg",
+    image: teamone,
     greeting: "Say Hello 👋",
   },
   {
     id: 2,
     name: "Sarah Johnson",
     role: "Chief Real Estate Officer",
-    image: "/team-member-2.jpg",
+    image: teamtwo,
     greeting: "Say Hello 👋",
   },
   {
     id: 3,
     name: "David Brown",
     role: "Head of Property Management",
-    image: "/team-member-3.jpg",
+    image: teamthree,
     greeting: "Say Hello 👋",
   },
   {
     id: 4,
     name: "Michael Turner",
     role: "Legal Counsel",
-    image: "/team-member-4.jpg",
+    image: teamfour,
     greeting: "Say Hello 👋",
     featured: true,
   },
