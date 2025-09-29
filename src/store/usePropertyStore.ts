@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import type { Property, PropertyFilter } from "../types/property";
 import pone from "../assets/Pone.png";
-import ptwo from "../assets/Ptwo.png";
-import pthree from "../assets/Pthree.png";
-import pfour from "../assets/Pfour.png";
+import ptwo from "../assets/ptwo.png";
+import pthree from "../assets/pthree.png";
+import pfour from "../assets/pfour.png";
 import pfive from "../assets/pfive.png";
 import psix from "../assets/psix.png";
 import pseven from "../assets/pseven.png";
