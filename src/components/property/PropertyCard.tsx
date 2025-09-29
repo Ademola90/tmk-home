@@ -29,9 +29,9 @@ const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
   };
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
+    return new Intl.NumberFormat("en-NG", {
       style: "currency",
-      currency: "USD",
+      currency: "NGN",
       minimumFractionDigits: 0,
     }).format(price);
   };
