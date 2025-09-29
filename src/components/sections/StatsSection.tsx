@@ -42,7 +42,7 @@ const StatsSection = () => {
     const startTimes = stats.map(() => Date.now());
 
     const animate = () => {
-      const newCounts = counts.map((count, index) => {
+      const newCounts = counts.map((index) => {
         const progress = Math.min(
           (Date.now() - startTimes[index]) / durations[index],
           1
