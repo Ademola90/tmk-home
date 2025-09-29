@@ -9,6 +9,9 @@ import { useToastStore } from "../../store/useToastStore";
 import { useThemeStore } from "../../store/useThemeStore";
 
 const VerifyOTP = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [timer, setTimer] = useState(60);
   const { verifyOTP, isLoading } = useAuthStore();
@@ -81,7 +84,7 @@ const VerifyOTP = () => {
         className="max-w-md w-full space-y-8"
       >
         <div className="text-center">
-          <Logo size="lg" />
+          <Logo size="sm" variant="white" />
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

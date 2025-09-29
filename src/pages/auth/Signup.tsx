@@ -1,5 +1,5 @@
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiUser, FiMail } from "react-icons/fi"; // Remove FiLock, FiEye, FiEyeOff
@@ -10,6 +10,9 @@ import { useToastStore } from "../../store/useToastStore";
 import { useThemeStore } from "../../store/useThemeStore";
 
 const Signup = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const { signup, isLoading } = useAuthStore();
@@ -47,7 +50,7 @@ const Signup = () => {
         className="max-w-md w-full space-y-8"
       >
         <div className="text-center">
-          <Logo size="lg" />
+          <Logo size="sm" variant="white" />
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

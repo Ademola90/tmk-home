@@ -25,6 +25,12 @@ import { useToastStore } from "./store/useToastStore";
 // Protected Route Component
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import AboutUs from "./pages/About-Us";
+import Services from "./pages/Services";
+import Profile from "./pages/Profile";
+import MyProperties from "./pages/MyProperties";
+import Favorites from "./pages/Favorites";
+import Documents from "./pages/Documents";
+import Settings from "./pages/Settings";
 
 function App() {
   const { isDarkMode } = useThemeStore();
@@ -51,6 +57,12 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/property/:id" element={<PropertyDetail />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/my-properties" element={<MyProperties />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/documents" element={<Documents />} />
+          <Route path="/settings" element={<Settings />} />
 
           {/* Auth Routes */}
           <Route path="/login" element={<Login />} />

@@ -1,5 +1,5 @@
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiMail } from "react-icons/fi";
@@ -11,6 +11,9 @@ import { useThemeStore } from "../../store/useThemeStore";
 import { useToastStore } from "../../store/useToastStore";
 
 const Login = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [email, setEmail] = useState("");
   const { login, isLoading } = useAuthStore();
   const { addToast } = useToastStore();
@@ -47,7 +50,7 @@ const Login = () => {
         className="max-w-md w-full space-y-8"
       >
         <div className="text-center">
-          <Logo size="lg" />
+          <Logo size="sm" variant="white" />
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
