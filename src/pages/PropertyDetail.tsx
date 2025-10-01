@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiArrowLeft, FiHeart, FiShare2, FiDollarSign } from "react-icons/fi";
+import { FiArrowLeft, FiHeart, FiShare2 } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 import PropertyImageGallery from "../components/property/PropertyImageGallery";
 import PropertyDetails from "../components/property/PropertyDetails";
 // import AgentCard from "../components/property/AgentCard";
@@ -11,7 +12,6 @@ import Navbar from "../components/nav/Navbar";
 import Footer from "../components/sections/Footer";
 import { usePropertyStore } from "../store/usePropertyStore";
 import { useAuthStore } from "../store/useAuthStore";
-import { useWalletStore } from "../store/useWalletStore";
 import { useToastStore } from "../store/useToastStore";
 
 const PropertyDetail = () => {
@@ -20,14 +20,28 @@ const PropertyDetail = () => {
   }, []);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { properties, selectedProperty, setSelectedProperty } =
-    usePropertyStore();
+  const {
+    properties,
+    selectedProperty,
+    setSelectedProperty,
+    fetchProperties,
+    isLoading,
+  } = usePropertyStore();
   const { isAuthenticated } = useAuthStore();
-  const { createEscrow, balance } = useWalletStore();
   const { addToast } = useToastStore();
-  const [isProcessing, setIsProcessing] = useState(false);
 
   const property = selectedProperty || properties.find((p) => p.id === id);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    // Fetch properties if not already loaded
+    if (properties.length === 0) {
+      fetchProperties();
+    }
+  }, [properties.length, fetchProperties]);
 
   useEffect(() => {
     if (!property && id) {
@@ -37,38 +51,6 @@ const PropertyDetail = () => {
       }
     }
   }, [id, properties, property, setSelectedProperty]);
-
-  const handlePurchase = async () => {
-    if (!property) return;
-
-    if (!isAuthenticated) {
-      addToast("Please login to make a purchase", "error");
-      navigate("/login");
-      return;
-    }
-
-    if (balance < property.price) {
-      addToast("Insufficient funds. Please add money to your wallet.", "error");
-      navigate("/wallet");
-      return;
-    }
-
-    setIsProcessing(true);
-    const success = await createEscrow(
-      property.id,
-      property.title,
-      property.price,
-      property.agent.id
-    );
-
-    if (success) {
-      addToast("Purchase initiated! Funds moved to escrow.", "success");
-      navigate("/wallet");
-    } else {
-      addToast("Failed to initiate purchase. Please try again.", "error");
-    }
-    setIsProcessing(false);
-  };
 
   const handleFavorite = () => {
     if (!isAuthenticated) {
@@ -90,6 +72,49 @@ const PropertyDetail = () => {
       addToast("Link copied to clipboard", "success");
     }
   };
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  const generateWhatsAppMessage = () => {
+    if (!property) return "";
+
+    const message = `Hello! I'm interested in this property:
+
+*${property.title}*
+
+📍 Location: ${property.location}, ${property.state}
+💰 Price: ${formatCurrency(property.price)}
+🛏️ Bedrooms: ${property.bedrooms}
+🚿 Bathrooms: ${property.bathrooms}
+📏 Area: ${property.area} sqft
+
+🔗 Property Link: ${window.location.href}
+
+I would like to get more information about this property. Thank you!`;
+
+    return encodeURIComponent(message);
+  };
+
+  const whatsappLink = `https://wa.me/2348134392733?text=${generateWhatsAppMessage()}`;
+
+  // Add loading check before showing "not found"
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="flex items-center justify-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!property) {
     return (
@@ -113,21 +138,13 @@ const PropertyDetail = () => {
     );
   }
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("en-NG", {
-      style: "currency",
-      currency: "NGN",
-      minimumFractionDigits: 0,
-    }).format(amount);
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
       {/* Header */}
-      <div className="bg-card  sticky top-0 z-40 px-5 md:px-10 lg:px-16">
-        <div className="container mx-auto px-4 py-4">
+      <div className="bg-card  sticky top-0 z-40 ">
+        <div className="container mx-auto px-5 md:px-10 lg:px-16 py-4">
           <div className="flex items-center justify-between">
             <button
               onClick={() => navigate(-1)}
@@ -155,8 +172,8 @@ const PropertyDetail = () => {
         </div>
       </div>
 
-      <div className="container mx-auto py-8 px-5 md:px-10 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="container mx-auto py-8  ">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-5 md:px-10 lg:px-16">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Image Gallery */}
@@ -188,22 +205,21 @@ const PropertyDetail = () => {
                 <div className="text-3xl font-bold text-primary mb-2">
                   {formatCurrency(property.price)}
                 </div>
-                <div className="text-muted-foreground">
-                  ${Math.round(property.price / property.area)}/sqft
-                </div>
               </div>
 
               {property.status === "available" ? (
                 <div className="space-y-4">
-                  <Button
-                    onClick={handlePurchase}
-                    className="w-full"
-                    size="lg"
-                    isLoading={isProcessing}
+                  {/* WhatsApp Button */}
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-full bg-[#25D366] hover:bg-[#1DA851] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
-                    <FiDollarSign className="w-5 h-5 mr-2" />
-                    Purchase Property
-                  </Button>
+                    <FaWhatsapp className="w-5 h-5 mr-2" />
+                    Inquire on WhatsApp
+                  </a>
+
                   <Button
                     variant="outline"
                     className="w-full bg-transparent"
@@ -238,7 +254,7 @@ const PropertyDetail = () => {
 
               <div className="mt-6 pt-6 border-t border-border text-center">
                 <p className="text-sm text-muted-foreground">
-                  Secure transaction with escrow protection
+                  Direct contact with our team via WhatsApp
                 </p>
               </div>
             </motion.div>

@@ -92,7 +92,7 @@ function App() {
         </Routes>
 
         {/* Global Components */}
-        <WhatsAppButton phoneNumber="+447733714715" />
+        <WhatsAppButton phoneNumber="+2348134392733" />
 
         {/* Toast Notifications */}
         <div className="fixed top-4 right-4 z-50 space-y-2">

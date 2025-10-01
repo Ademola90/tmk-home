@@ -35,17 +35,17 @@ const RelatedProperties = ({ currentProperty }: RelatedPropertiesProps) => {
   }
 
   return (
-    <section className="py-12">
+    <section className="py-12 bg-gray-900 px-5 md:px-10 lg:px-16 mt-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="mb-8"
       >
-        <h2 className="text-3xl font-bold text-foreground mb-4">
+        <h2 className="text-3xl font-bold text-foreground mb-4 text-white">
           Similar Properties
         </h2>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground text-white">
           Discover other properties that might interest you
         </p>
       </motion.div>

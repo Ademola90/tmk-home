@@ -1,3 +1,5 @@
+"use client";
+
 import type React from "react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -12,9 +14,6 @@ import Navbar from "../components/nav/Navbar";
 import Footer from "../components/sections/Footer";
 
 const Properties = () => {
-    useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   const navigate = useNavigate();
   const {
     filteredProperties,
@@ -31,7 +30,9 @@ const Properties = () => {
 
   useEffect(() => {
     fetchProperties();
-  }, [fetchProperties]);
+    // Clear category filter to show all properties
+    setFilters({});
+  }, [fetchProperties, setFilters]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,9 +59,10 @@ const Properties = () => {
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-          //   style={{
-          //     backgroundImage: "url(pten)",
-          //   }}
+          style={{
+            backgroundImage:
+              "url('/modern-luxury-real-estate-properties-skyline.jpg')",
+          }}
         />
 
         {/* Overlay */}
@@ -110,29 +112,20 @@ const Properties = () => {
           </motion.form>
         </div>
       </section>
+
       {/* Filters and Results */}
       <section className="py-8 bg-gray-900 px-5 md:px-10 lg:px-16">
         <div className="container mx-auto px-4">
           {/* Filter Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 space-y-4 md:space-y-0">
-            <div className="flex items-center gap-24">
-              <div className=" ">
-                <p className=" font-semibold text-4xl text-white">
-                  Discover a World of Possibilities
-                </p>
-                <p className=" text-base font-normal text-white">
-                  Our portfolio of properties is as diverse as your dreams.
-                </p>
-              </div>
-              <div className=" flex items-center gap-10">
-                <PropertyFilters
-                  filters={filters}
-                  onFiltersChange={setFilters}
-                  onClearFilters={handleClearFilters}
-                />
-                <div className="text-sm text-muted-foreground text-white">
-                  {filteredProperties.length} properties found
-                </div>
+            <div className="flex items-center space-x-4">
+              <PropertyFilters
+                filters={filters}
+                onFiltersChange={setFilters}
+                onClearFilters={handleClearFilters}
+              />
+              <div className="text-sm text-muted-foreground text-white font-normal">
+                {filteredProperties.length} properties found
               </div>
             </div>
 
@@ -225,8 +218,12 @@ export default Properties;
 // import { usePropertyStore } from "../store/usePropertyStore";
 // import type { Property } from "../types/property";
 // import Navbar from "../components/nav/Navbar";
+// import Footer from "../components/sections/Footer";
 
 // const Properties = () => {
+//     useEffect(() => {
+//     window.scrollTo(0, 0);
+//   }, []);
 //   const navigate = useNavigate();
 //   const {
 //     filteredProperties,
@@ -263,22 +260,33 @@ export default Properties;
 
 //   return (
 //     <div className="min-h-screen bg-background">
-//       <nav>
-//         <Navbar />
-//       </nav>
+//       <Navbar />
+
 //       {/* Hero Section */}
-//       <section className="bg-primary/5 py-16">
-//         <div className="container mx-auto px-4">
+//       <section className="relative bg-primary/5 py-16 overflow-hidden">
+//         {/* Background Image */}
+//         <div
+//           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+//           //   style={{
+//           //     backgroundImage: "url(pten)",
+//           //   }}
+//         />
+
+//         {/* Overlay */}
+//         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-purple-900/50" />
+
+//         {/* Content */}
+//         <div className="container mx-auto px-4 relative z-10">
 //           <motion.div
 //             initial={{ opacity: 0, y: 30 }}
 //             animate={{ opacity: 1, y: 0 }}
 //             transition={{ duration: 0.6 }}
 //             className="text-center mb-8"
 //           >
-//             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+//             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
 //               Find Your Dream Property
 //             </h1>
-//             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+//             <p className="text-xl text-gray-100 max-w-2xl mx-auto drop-shadow-md">
 //               Discover the perfect home from our curated collection of premium
 //               properties
 //             </p>
@@ -299,7 +307,7 @@ export default Properties;
 //                 placeholder="Search by location, property type, or keywords..."
 //                 value={searchQuery}
 //                 onChange={(e) => setSearchQuery(e.target.value)}
-//                 className="w-full pl-12 pr-4 py-4 text-lg border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-card"
+//                 className="w-full pl-12 pr-4 py-4 text-lg border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary bg-white/95 backdrop-blur-sm"
 //               />
 //               <Button
 //                 type="submit"
@@ -311,20 +319,29 @@ export default Properties;
 //           </motion.form>
 //         </div>
 //       </section>
-
 //       {/* Filters and Results */}
-//       <section className="py-8">
+//       <section className="py-8 bg-gray-900 px-5 md:px-10 lg:px-16">
 //         <div className="container mx-auto px-4">
 //           {/* Filter Bar */}
 //           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 space-y-4 md:space-y-0">
-//             <div className="flex items-center space-x-4">
-//               <PropertyFilters
-//                 filters={filters}
-//                 onFiltersChange={setFilters}
-//                 onClearFilters={handleClearFilters}
-//               />
-//               <div className="text-sm text-muted-foreground">
-//                 {filteredProperties.length} properties found
+//             <div className="flex items-center gap-24">
+//               <div className=" ">
+//                 <p className=" font-semibold text-4xl text-white">
+//                   Discover a World of Possibilities
+//                 </p>
+//                 <p className=" text-base font-normal text-white">
+//                   Our portfolio of properties is as diverse as your dreams.
+//                 </p>
+//               </div>
+//               <div className=" flex items-center gap-10">
+//                 <PropertyFilters
+//                   filters={filters}
+//                   onFiltersChange={setFilters}
+//                   onClearFilters={handleClearFilters}
+//                 />
+//                 <div className="text-sm text-muted-foreground text-white">
+//                   {filteredProperties.length} properties found
+//                 </div>
 //               </div>
 //             </div>
 
@@ -337,7 +354,7 @@ export default Properties;
 //                     : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
 //                 }`}
 //               >
-//                 <FiGrid className="w-4 h-4" />
+//                 <FiGrid className="w-4 h-4 text-white" />
 //               </button>
 //               <button
 //                 onClick={() => setViewMode("list")}
@@ -347,7 +364,7 @@ export default Properties;
 //                     : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
 //                 }`}
 //               >
-//                 <FiList className="w-4 h-4" />
+//                 <FiList className="w-4 h-4 text-white" />
 //               </button>
 //             </div>
 //           </div>
@@ -398,6 +415,8 @@ export default Properties;
 //           )}
 //         </div>
 //       </section>
+
+//       <Footer />
 //     </div>
 //   );
 // };

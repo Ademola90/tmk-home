@@ -1,12 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  FiMaximize2,
-  FiMapPin,
-  FiHome,
-  FiCheck,
-  FiWifi,
-  FiShield,
-} from "react-icons/fi";
+import { FiMapPin, FiHome, FiCheck, FiWifi, FiShield } from "react-icons/fi";
 import { FaCar } from "react-icons/fa";
 import { FaBath, FaBed } from "react-icons/fa";
 import type { Property } from "../../types/property";
@@ -101,13 +94,13 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
                 <span className="font-medium">{property.bathrooms}</span>
                 <span className="text-muted-foreground ml-1">bath</span>
               </div>
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <FiMaximize2 className="w-5 h-5 mr-2 text-primary" />
                 <span className="font-medium">
                   {property.area.toLocaleString()}
                 </span>
                 <span className="text-muted-foreground ml-1">sqft</span>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -115,9 +108,9 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
             <div className="text-4xl font-bold text-primary mb-2">
               {formatCurrency(property.price)}
             </div>
-            <div className="text-muted-foreground">
+            {/* <div className="text-muted-foreground">
               ${Math.round(property.price / property.area)}/sqft
-            </div>
+            </div> */}
           </div>
         </div>
       </motion.div>
@@ -187,12 +180,12 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
                   {property.bathrooms}
                 </span>
               </div>
-              <div className="flex justify-between py-3 border-b border-border">
+              {/* <div className="flex justify-between py-3 border-b border-border">
                 <span className="text-muted-foreground">Area</span>
                 <span className="font-medium text-foreground">
                   {property.area.toLocaleString()} sqft
                 </span>
-              </div>
+              </div> */}
             </div>
             <div className="space-y-4">
               <div className="flex justify-between py-3 border-b border-border">

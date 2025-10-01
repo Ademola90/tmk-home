@@ -1,7 +1,7 @@
 import type React from "react";
 
 import { motion } from "framer-motion";
-import { FiMaximize2, FiMapPin, FiHeart } from "react-icons/fi";
+import { FiMapPin, FiHeart } from "react-icons/fi";
 // import type { Property } from "../../types/property";
 // import { useAuthStore } from "../../store/useAuthStore";
 // import { useToastStore } from "../../store/useToastStore";
@@ -103,10 +103,10 @@ const PropertyCard = ({ property, onClick }: PropertyCardProps) => {
               <FaBath className="w-4 h-4 mr-1" />
               <span>{property.bathrooms} bath</span>
             </div>
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <FiMaximize2 className="w-4 h-4 mr-1" />
               <span>{property.area} sqft</span>
-            </div>
+            </div> */}
           </div>
         </div>
 
