@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import {
   FiSearch,
@@ -12,6 +10,9 @@ import {
 import Navbar from "../components/nav/Navbar";
 import Footer from "../components/sections/Footer";
 import { useEffect } from "react";
+import servone from "../assets/servone.png";
+import servtwo from "../assets/servtwo..png";
+import servthree from "../assets/servthree.png";
 
 const services = [
   {
@@ -25,7 +26,7 @@ const services = [
       "Neighborhood Insights",
       "Property Comparisons",
     ],
-    image: "/property-search-service.jpg",
+    image: servone,
   },
   {
     icon: FiShield,
@@ -38,7 +39,7 @@ const services = [
       "Transaction Tracking",
       "Fraud Prevention",
     ],
-    image: "/secure-transaction-service.jpg",
+    image: servtwo,
   },
   {
     icon: FiTrendingUp,
@@ -51,7 +52,7 @@ const services = [
       "Portfolio Management",
       "Investment Strategies",
     ],
-    image: "/investment-advisory-service.jpg",
+    image: servthree,
   },
   {
     icon: FiHome,

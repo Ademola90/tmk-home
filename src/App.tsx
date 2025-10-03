@@ -31,6 +31,7 @@ import MyProperties from "./pages/MyProperties";
 import Favorites from "./pages/Favorites";
 import Documents from "./pages/Documents";
 import Settings from "./pages/Settings";
+import PropertyCategory from "./pages/PropertyCategory";
 
 function App() {
   const { isDarkMode } = useThemeStore();
@@ -56,6 +57,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/properties" element={<Properties />} />
+          <Route path="/properties/:category" element={<PropertyCategory />} />
           <Route path="/property/:id" element={<PropertyDetail />} />
           <Route path="/services" element={<Services />} />
           <Route path="/profile" element={<Profile />} />
