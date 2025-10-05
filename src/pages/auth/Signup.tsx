@@ -28,15 +28,14 @@ const Signup = () => {
       return;
     }
 
-    const success = await signup(name, email); // Remove password parameter
-    if (success) {
+    try {
+      await signup({ name, email });
       addToast("Account created! Please verify your email", "success");
       navigate("/verify-otp");
-    } else {
+    } catch {
       addToast("Failed to create account", "error");
     }
   };
-
   return (
     <div
       className={`min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ${

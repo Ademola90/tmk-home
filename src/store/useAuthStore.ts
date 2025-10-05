@@ -6,7 +6,8 @@ export interface User {
   name: string;
   email: string;
   phone: string;
-  role?: "super_admin" | "admin" | "agent" | "user"; // Make role optional
+  role?: "super_admin" | "admin" | "agent" | "user";
+  avatar?: string;
 }
 
 interface AuthState {
@@ -14,15 +15,10 @@ interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
   token: string | null;
-  login: (email: string, password: string) => Promise<void>;
-  signup: (userData: {
-    name: string;
-    email: string;
-    phone: string;
-    password: string;
-  }) => Promise<void>;
+  login: (email: string) => Promise<boolean>;
+  signup: (userData: { name: string; email: string }) => Promise<boolean>;
   logout: () => void;
-  verifyOTP: (otp: string) => Promise<void>;
+  verifyOTP: (otp: string) => Promise<boolean>;
   updateUser: (userData: Partial<User>) => void;
 }
 
@@ -40,27 +36,24 @@ export const useAuthStore = create<AuthState>()(
           await new Promise((resolve) => setTimeout(resolve, 1500));
           localStorage.setItem("tempSignupData", JSON.stringify(userData));
           set({ isLoading: false });
+          return true;
         } catch (error) {
           console.error("Signup error:", error);
           set({ isLoading: false });
-          throw error;
+          return false;
         }
       },
 
       login: async (email: string) => {
-        // Added password parameter
         set({ isLoading: true });
         try {
           await new Promise((resolve) => setTimeout(resolve, 1000));
 
-          // Remove role-based email checking for now
-          // All users will have access to all dashboard areas temporarily
           const mockUser: User = {
             id: "1",
             name: "John Doe",
             email: email,
             phone: "+234 813 439 2733",
-            // role: "user", // Remove role assignment for now
           };
 
           set({
@@ -69,9 +62,11 @@ export const useAuthStore = create<AuthState>()(
             token: "mock-token-123",
             isLoading: false,
           });
-        } catch (error) {
+
+          return true;
+        } catch {
           set({ isLoading: false });
-          throw error;
+          return false;
         }
       },
 
@@ -86,8 +81,9 @@ export const useAuthStore = create<AuthState>()(
               const userData = JSON.parse(tempData);
               const mockUser: User = {
                 id: Date.now().toString(),
-                ...userData,
-                // role: "user", // Remove role assignment
+                name: userData.name,
+                email: userData.email,
+                phone: "+234 813 439 2733",
               };
               set({
                 user: mockUser,
@@ -96,13 +92,15 @@ export const useAuthStore = create<AuthState>()(
                 isLoading: false,
               });
               localStorage.removeItem("tempSignupData");
+              return true;
             }
           }
           set({ isLoading: false });
+          return false;
         } catch (error) {
           console.error("OTP verification error:", error);
           set({ isLoading: false });
-          throw error;
+          return false;
         }
       },
 

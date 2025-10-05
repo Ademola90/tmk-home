@@ -10,7 +10,6 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import type { Property } from "../../types/property";
-// import type { Property } from "../../types/property";
 
 interface AIRecommendationsProps {
   currentProperty?: Property;
@@ -53,6 +52,7 @@ const AIRecommendations: React.FC<AIRecommendationsProps> = ({
             bathrooms: 3,
             area: 2800,
             type: "house",
+            category: "houses",
             status: "available",
             images: ["/modern-family-home.png"],
             features: ["Garden", "Garage", "Security System", "Modern Kitchen"],
@@ -78,6 +78,7 @@ const AIRecommendations: React.FC<AIRecommendationsProps> = ({
             bathrooms: 2,
             area: 1800,
             type: "apartment",
+            category: "apartments",
             status: "available",
             images: ["/luxury-apartment-city-view.jpg"],
             features: ["City View", "Gym", "Pool", "Concierge"],
